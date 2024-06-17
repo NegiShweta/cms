@@ -1,4 +1,4 @@
-<?php include "include/admin_header.php"; ?>
+<?php include "include/admin_header.php"; ?>\
 
 <div id="wrapper">
 
@@ -35,30 +35,16 @@
 
 
                         <?php
-
+                        // update and include query
                         if (isset($_GET['edit'])) {
                             $cat_id =  $_GET['edit'];
-                            include "include/update_categories.php";
+                            include "include/update_categories1.php";
                         }
-
-                        if (isset($_GET['delete'])) {
-                            $the_cat_id = mysqli_real_escape_string($connection, $_GET['delete']);
-                            $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id}";
-                            $delete_query = mysqli_query($connection, $query);
-                            header("Location: categories.php");
-                        }
-
 
                         ?>
                     </div>
 
                     <div class="col-xs-6">
-                        <!-- Display Categories Table -->
-                        <?php
-                        $query = "SELECT * FROM categories";
-                        $select_categories = mysqli_query($connection, $query);
-                        ?>
-
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -68,17 +54,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                                <!-- Display Categories Table -->
+                                 <!-- find all categories query -->
+                                <?php  findAllCategories(); ?>
+
                                 <?php
-                                while ($row = mysqli_fetch_assoc($select_categories)) {
-                                    $cat_id = $row['cat_id'];
-                                    $cat_tittle = $row['cat_tittle'];
-                                    echo "<tr>";
-                                    echo "<td>{$cat_id}</td>";
-                                    echo "<td>{$cat_tittle}</td>";
-                                    echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a> | <a href='categories.php?delete={$cat_id}'>Delete</a></td>";
-                                    echo "</tr>";
-                                }
-                                ?>
+                                // delete Query
+                                deleteCategories();  ?>
                             </tbody>
                         </table>
                     </div>

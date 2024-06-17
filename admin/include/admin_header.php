@@ -1,7 +1,6 @@
-<?php ob_start();  ?>
-
 <?php include "../include/db.php"; ?>
-<?php include "functions.php"; ?>
+<?php  include "../function.php" ?>
+<?php ob_start();  ?>
 
 
 <!DOCTYPE html>
@@ -34,5 +33,4 @@
     <![endif]-->
 
 </head>
-
 <body>
